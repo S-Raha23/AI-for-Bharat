@@ -2,203 +2,186 @@
 
 ## Introduction
 
-IndiLearn is an AI-powered, multilingual learning and developer productivity platform designed to help Tier-2/3 Indian students and developers become job-ready through personalized learning paths, explainable AI tutoring, real-world coding assistance, and skill-graph–based progress tracking. The platform is accessible via web and mobile, optimized for low-bandwidth and offline environments.
+IndiLearn is an AI-powered, multilingual learning and developer productivity platform that helps Tier-2/3 Indian students and developers become job-ready through personalized learning paths, explainable AI tutoring, real-world coding assistance, and skill-graph–based progress tracking — accessible via web and mobile, even in low-bandwidth or offline environments.
 
 ## Glossary
 
 - **IndiLearn_Platform**: The complete AI-powered learning and productivity system
-- **AI_Skill_Graph**: Dynamic knowledge representation system that models learner competencies
-- **Multilingual_Tutor**: AI system providing explanations in local Indian languages
-- **Learning_Path_Generator**: AI system creating personalized learning sequences
-- **Offline_Cache**: Local storage system for content and progress synchronization
-- **Job_Readiness_Engine**: System calculating employment preparedness scores
-- **Productivity_Assistant**: AI system providing coding and debugging assistance
-- **Bhashini_API**: Government of India's language AI platform
-- **AWS_Bedrock**: Amazon's managed foundation model service
-- **Skill_Node**: Individual competency unit in the skill graph
-- **Confidence_Weight**: Numerical representation of learner's mastery level
-- **Role_Mapping**: Association between skills and job requirements
+- **AI_Skill_Graph**: Dynamic knowledge representation modeling learner's understanding across skills
+- **Learning_Path_Generator**: AI system that creates personalized learning sequences
+- **Multilingual_AI_Tutor**: AI system providing explanations in local Indian languages
+- **Offline_Cache**: Local storage system enabling learning without internet connectivity
+- **Job_Readiness_Score**: Quantified assessment of learner's preparedness for specific roles
+- **Skill_Node**: Individual skill unit in the AI skill graph with confidence weighting
+- **Bhashini_API**: Government of India's language AI platform for Indian languages
+- **Tier_2_3_Cities**: Non-metropolitan Indian cities with limited educational infrastructure
 
 ## Requirements
 
 ### Requirement 1: User Onboarding and Profile Creation
 
-**User Story:** As a Tier-2/3 student or developer, I want to set up my learning profile with my goals and preferences, so that the platform can provide personalized learning experiences.
+**User Story:** As a Tier-2/3 Indian student or developer, I want to set up my learning profile with my goals, language preferences, and current skill level, so that the platform can provide personalized learning experiences.
 
 #### Acceptance Criteria
 
-1. WHEN a new user accesses the platform, THE IndiLearn_Platform SHALL display goal selection options including Backend Development, AI/ML Engineering, Cloud & DevOps, and Cybersecurity
-2. WHEN a user selects their preferred language, THE IndiLearn_Platform SHALL support English, Hindi, Tamil, Telugu, Marathi, and Bengali with extensibility for additional languages
-3. WHEN a user completes skill self-assessment via text or voice input, THE AI_Skill_Graph SHALL initialize with baseline competency levels
-4. WHEN a user indicates connectivity preference, THE IndiLearn_Platform SHALL configure appropriate content delivery and caching strategies
-5. WHEN onboarding is complete, THE IndiLearn_Platform SHALL generate an initial personalized learning path based on the user's profile
+1. WHEN a new user accesses the platform, THE IndiLearn_Platform SHALL display an onboarding interface supporting Hindi, Tamil, Telugu, Marathi, Bengali, and English
+2. WHEN a user selects their preferred language, THE IndiLearn_Platform SHALL persist this preference and use it for all subsequent interactions
+3. WHEN a user completes goal selection (Software Development, AI/ML, Cloud & DevOps, or Cybersecurity), THE IndiLearn_Platform SHALL initialize a domain-specific skill graph
+4. WHEN a user undergoes initial skill assessment, THE AI_Skill_Graph SHALL populate confidence weights for foundational skills based on assessment results
+5. WHEN a user indicates low-bandwidth connectivity, THE IndiLearn_Platform SHALL enable offline-first mode and begin content pre-caching
 
-### Requirement 2: AI-Driven Personal Skill Graph System
+### Requirement 2: AI Skill Graph Engine
 
-**User Story:** As a learner, I want the system to understand what I know and don't know, so that it can guide me effectively toward my career goals.
+**User Story:** As a learner, I want the system to understand what I know, partially understand, and need to learn next, so that my learning experience is precisely tailored to my current knowledge state.
 
 #### Acceptance Criteria
 
-1. THE AI_Skill_Graph SHALL maintain skill nodes with prerequisite relationships and confidence weights for each learner
-2. WHEN a user completes learning activities or assessments, THE AI_Skill_Graph SHALL update confidence weights using AI reasoning
-3. WHEN skill confidence changes, THE AI_Skill_Graph SHALL propagate updates to dependent skill nodes
-4. THE AI_Skill_Graph SHALL map individual skills to specific job role requirements
-5. WHEN queried for learning recommendations, THE AI_Skill_Graph SHALL identify knowledge gaps and suggest next learning objectives
+1. THE AI_Skill_Graph SHALL maintain skill nodes with confidence weights ranging from 0.0 (unknown) to 1.0 (mastered)
+2. WHEN a learner completes any learning activity, THE AI_Skill_Graph SHALL update relevant skill confidence weights using AI reasoning
+3. WHEN skill dependencies exist, THE AI_Skill_Graph SHALL enforce prerequisite relationships and prevent advanced topics until foundations are solid
+4. THE AI_Skill_Graph SHALL map individual skills to real job role requirements for Software Development, AI/ML, Cloud & DevOps, and Cybersecurity domains
+5. WHEN the skill graph is updated, THE AI_Skill_Graph SHALL recalculate job readiness scores for all relevant roles
 
 ### Requirement 3: Personalized Learning Path Generation
 
-**User Story:** As a learner, I want daily learning objectives that adapt to my progress, so that I can systematically build job-ready skills.
+**User Story:** As a learner, I want daily learning objectives that adapt to my progress and understanding, so that I can efficiently move from concepts to practice to real-world application.
 
 #### Acceptance Criteria
 
-1. WHEN a user starts their learning session, THE Learning_Path_Generator SHALL provide daily learning objectives based on their skill graph
-2. WHEN a user demonstrates mastery of a concept, THE Learning_Path_Generator SHALL increase difficulty and introduce advanced topics
-3. WHEN a user struggles with a concept, THE Learning_Path_Generator SHALL provide additional practice and prerequisite reinforcement
-4. THE Learning_Path_Generator SHALL follow a concept → practice → real-world application learning loop for each skill
-5. WHEN generating learning paths, THE Learning_Path_Generator SHALL prioritize skills most critical for the user's target job role
+1. WHEN a user starts their learning session, THE Learning_Path_Generator SHALL create daily objectives based on current skill graph state and available time
+2. WHEN a learner struggles with a concept, THE Learning_Path_Generator SHALL adjust difficulty and provide additional foundational content
+3. WHEN a learner masters a concept quickly, THE Learning_Path_Generator SHALL accelerate to more advanced topics and practical applications
+4. THE Learning_Path_Generator SHALL structure learning in concept→practice→application sequences for optimal retention
+5. WHEN learning paths are generated, THE Learning_Path_Generator SHALL prioritize skills with highest impact on selected job role readiness
 
 ### Requirement 4: Multilingual AI Tutor and Explainer
 
-**User Story:** As a learner who is more comfortable with local languages, I want explanations in my preferred language with real-world context, so that I can understand complex technical concepts clearly.
+**User Story:** As a learner who struggles with English documentation and lacks mentors, I want AI explanations of code, errors, and concepts in my native language, so that I can understand complex technical topics clearly.
 
 #### Acceptance Criteria
 
-1. WHEN a user inputs code, error messages, documentation, or questions, THE Multilingual_Tutor SHALL provide step-by-step explanations in the user's preferred language
-2. WHEN providing explanations, THE Multilingual_Tutor SHALL include context about why the concept matters in real job scenarios
-3. WHEN processing user input, THE Multilingual_Tutor SHALL detect the input language and respond appropriately
-4. THE Multilingual_Tutor SHALL support voice input and voice output for accessibility
-5. WHEN explanations are generated, THE Multilingual_Tutor SHALL adapt complexity based on the user's current skill level
+1. WHEN a learner encounters code, THE Multilingual_AI_Tutor SHALL provide line-by-line explanations in the user's preferred language
+2. WHEN a learner faces debugging errors, THE Multilingual_AI_Tutor SHALL explain error messages, root causes, and solutions in local language
+3. WHEN a learner requests concept clarification, THE Multilingual_AI_Tutor SHALL provide explanations at appropriate depth based on skill graph confidence levels
+4. THE Multilingual_AI_Tutor SHALL use Bhashini_API for accurate Indian language processing and cultural context
+5. WHEN explanations are provided, THE Multilingual_AI_Tutor SHALL include relevant examples from Indian context and use cases
 
-### Requirement 5: Developer Productivity Assistant
+### Requirement 5: Developer Productivity Layer
 
-**User Story:** As a developer, I want AI assistance with debugging, code quality, and best practices, so that I can write better code and solve problems more efficiently.
+**User Story:** As a developer, I want real-time assistance with debugging, code quality, and security while coding, so that I can write better code and solve problems independently.
 
 #### Acceptance Criteria
 
-1. WHEN a user submits code with errors, THE Productivity_Assistant SHALL provide debugging assistance with explanations in the user's preferred language
-2. WHEN analyzing code, THE Productivity_Assistant SHALL suggest improvements for code quality, performance, and maintainability
-3. WHEN reviewing code, THE Productivity_Assistant SHALL identify security vulnerabilities and suggest best-practice implementations
-4. THE Productivity_Assistant SHALL provide context-aware suggestions based on the user's current skill level and learning objectives
-5. WHEN providing assistance, THE Productivity_Assistant SHALL explain the reasoning behind suggestions to promote learning
+1. WHEN a developer writes code, THE IndiLearn_Platform SHALL provide real-time code quality suggestions and best practice recommendations
+2. WHEN debugging errors occur, THE IndiLearn_Platform SHALL analyze error patterns and suggest specific debugging steps in user's preferred language
+3. WHEN security vulnerabilities are detected, THE IndiLearn_Platform SHALL highlight risks and provide secure coding alternatives
+4. THE IndiLearn_Platform SHALL integrate with popular IDEs and provide productivity hints during active development
+5. WHEN assistance is provided, THE IndiLearn_Platform SHALL update the skill graph based on the types of help requested and problems solved
 
 ### Requirement 6: Offline-First Learning System
 
-**User Story:** As a learner in areas with unreliable internet connectivity, I want to continue learning offline and sync my progress when connected, so that connectivity issues don't interrupt my learning journey.
+**User Story:** As a learner in areas with unreliable internet connectivity, I want to continue learning offline and sync my progress when connectivity returns, so that poor internet doesn't hinder my education.
 
 #### Acceptance Criteria
 
-1. WHEN a user is online, THE Offline_Cache SHALL download and store learning content, assessments, and progress data locally
-2. WHEN a user is offline, THE IndiLearn_Platform SHALL provide full learning functionality using cached content
-3. WHEN connectivity is restored, THE Offline_Cache SHALL synchronize local progress with the server
-4. WHEN sync conflicts occur, THE Offline_Cache SHALL resolve them using timestamp-based conflict resolution with user notification
-5. THE Offline_Cache SHALL optimize storage usage by prioritizing content based on the user's learning path
+1. WHEN internet connectivity is available, THE Offline_Cache SHALL pre-download learning content based on current learning path
+2. WHEN offline, THE IndiLearn_Platform SHALL provide full learning functionality using cached content and local AI processing
+3. WHEN connectivity returns, THE IndiLearn_Platform SHALL sync learning progress, skill graph updates, and completed activities to the cloud
+4. THE Offline_Cache SHALL prioritize content caching based on learning path priority and available storage space
+5. WHEN storage is limited, THE Offline_Cache SHALL intelligently manage content lifecycle, keeping most relevant materials accessible
 
 ### Requirement 7: Progress and Job-Readiness Dashboard
 
-**User Story:** As a learner, I want to visualize my skill development and job readiness, so that I can track my progress and identify areas needing improvement.
+**User Story:** As a learner, I want to see my skill coverage, identify weak areas, and understand my readiness for specific job roles, so that I can focus my efforts effectively and build confidence.
 
 #### Acceptance Criteria
 
-1. WHEN a user accesses their dashboard, THE Job_Readiness_Engine SHALL display skill coverage percentages for their target role
-2. WHEN displaying progress, THE IndiLearn_Platform SHALL visualize weak areas and suggest focused improvement activities
-3. THE Job_Readiness_Engine SHALL calculate and display a role readiness indicator based on current skill levels
-4. WHEN skill levels change, THE Job_Readiness_Engine SHALL update readiness scores in real-time
-5. THE IndiLearn_Platform SHALL provide detailed breakdowns of skill gaps with specific learning recommendations
+1. THE IndiLearn_Platform SHALL display current skill coverage as visual progress indicators across all domain areas
+2. WHEN weak areas are identified, THE IndiLearn_Platform SHALL highlight skills requiring attention and suggest focused learning activities
+3. THE IndiLearn_Platform SHALL calculate and display job readiness scores for target roles based on current skill graph state
+4. WHEN progress milestones are reached, THE IndiLearn_Platform SHALL provide achievement recognition and next-level goal suggestions
+5. THE IndiLearn_Platform SHALL show learning velocity trends and projected timelines for role readiness achievement
 
-### Requirement 8: Multilingual Content Processing
+### Requirement 8: Scalability and Performance
 
-**User Story:** As a platform serving diverse Indian learners, I want seamless language processing capabilities, so that users can interact naturally in their preferred languages.
-
-#### Acceptance Criteria
-
-1. WHEN processing text input, THE IndiLearn_Platform SHALL detect the language and route to appropriate processing services
-2. WHEN translating content, THE IndiLearn_Platform SHALL use Amazon Translate for general translations and Bhashini_API for Indian language nuances
-3. WHEN converting speech to text, THE IndiLearn_Platform SHALL use Amazon Transcribe with Indian language support
-4. WHEN generating speech output, THE IndiLearn_Platform SHALL use Amazon Polly with Indian language voices
-5. THE IndiLearn_Platform SHALL maintain translation quality by validating outputs and providing fallback mechanisms
-
-### Requirement 9: Scalable Cloud Infrastructure
-
-**User Story:** As a platform serving thousands of learners, I want reliable and scalable infrastructure, so that the system performs well under varying loads while controlling costs.
+**User Story:** As a platform serving millions of Indian learners, I want the system to handle high concurrent usage while maintaining fast response times, so that all users have a smooth learning experience.
 
 #### Acceptance Criteria
 
-1. THE IndiLearn_Platform SHALL use AWS Lambda for serverless backend processing to handle variable loads efficiently
-2. THE IndiLearn_Platform SHALL store skill graphs and user data in Amazon DynamoDB for fast, scalable access
-3. THE IndiLearn_Platform SHALL serve learning content through Amazon CloudFront for low-latency global delivery
-4. THE IndiLearn_Platform SHALL use Amazon S3 for cost-effective storage of learning materials and user-generated content
-5. WHEN processing AI requests, THE IndiLearn_Platform SHALL use Amazon Bedrock for managed LLM inference with cost optimization
+1. THE IndiLearn_Platform SHALL support concurrent usage by 100,000+ active learners without performance degradation
+2. WHEN API requests are made, THE IndiLearn_Platform SHALL respond within 200ms for cached content and 2 seconds for AI-generated responses
+3. THE IndiLearn_Platform SHALL automatically scale compute resources based on usage patterns and maintain 99.9% uptime
+4. WHEN database queries are executed, THE IndiLearn_Platform SHALL optimize for sub-100ms response times for skill graph operations
+5. THE IndiLearn_Platform SHALL implement efficient caching strategies to minimize repeated AI inference costs
 
-### Requirement 10: Data Privacy and Security
+### Requirement 9: Low-Bandwidth and Accessibility Support
 
-**User Story:** As a learner sharing personal learning data, I want my information to be secure and private, so that I can trust the platform with my educational journey.
-
-#### Acceptance Criteria
-
-1. THE IndiLearn_Platform SHALL implement explicit user consent for all data collection and processing activities
-2. THE IndiLearn_Platform SHALL minimize data storage by keeping only essential information for personalization
-3. THE IndiLearn_Platform SHALL use AWS IAM for secure access control and service-to-service authentication
-4. THE IndiLearn_Platform SHALL encrypt all data in transit and at rest using AWS security best practices
-5. WHEN processing sensitive information, THE IndiLearn_Platform SHALL avoid storing or logging personally identifiable details
-
-### Requirement 11: AI Ethics and Explainability
-
-**User Story:** As a learner relying on AI recommendations, I want to understand how the system makes decisions and trust that it treats me fairly, so that I can make informed choices about my learning.
+**User Story:** As a learner with limited internet bandwidth and potentially using assistive technologies, I want the platform to work efficiently on slow connections and be fully accessible, so that technical barriers don't prevent my learning.
 
 #### Acceptance Criteria
 
-1. WHEN providing learning recommendations, THE IndiLearn_Platform SHALL explain the reasoning behind suggestions in understandable terms
-2. THE IndiLearn_Platform SHALL implement bias detection and mitigation strategies across all AI components
-3. WHEN AI systems are uncertain or lack confidence, THE IndiLearn_Platform SHALL clearly communicate limitations to users
-4. THE IndiLearn_Platform SHALL provide mechanisms for users to provide feedback on AI recommendations and explanations
-5. WHEN critical learning decisions are involved, THE IndiLearn_Platform SHALL offer human expert escalation options
+1. THE IndiLearn_Platform SHALL function effectively on connections as slow as 2G (64 kbps) through aggressive content optimization
+2. WHEN low bandwidth is detected, THE IndiLearn_Platform SHALL prioritize essential content and defer non-critical resources
+3. THE IndiLearn_Platform SHALL comply with WCAG 2.1 AA accessibility standards for screen readers and keyboard navigation
+4. THE IndiLearn_Platform SHALL provide text alternatives for all visual content and support high contrast modes
+5. WHEN accessibility features are enabled, THE IndiLearn_Platform SHALL maintain full functionality without compromising user experience
 
-### Requirement 12: Performance and Low-Bandwidth Optimization
+### Requirement 10: Privacy and Data Protection
 
-**User Story:** As a learner with limited internet bandwidth, I want the platform to work efficiently with my connection, so that I can learn without frustration or excessive data costs.
+**User Story:** As a learner concerned about data privacy, I want my personal information and learning data to be protected and used transparently, so that I can learn with confidence about data security.
 
 #### Acceptance Criteria
 
-1. THE IndiLearn_Platform SHALL optimize content delivery based on detected connection speed and user preferences
-2. WHEN bandwidth is limited, THE IndiLearn_Platform SHALL prioritize essential content and defer non-critical resources
-3. THE IndiLearn_Platform SHALL compress images, videos, and other media without significantly impacting learning quality
-4. THE IndiLearn_Platform SHALL provide progressive loading of content to minimize initial load times
-5. WHEN offline mode is activated, THE IndiLearn_Platform SHALL gracefully degrade functionality while maintaining core learning capabilities
+1. THE IndiLearn_Platform SHALL collect only essential data required for personalized learning and explicitly request user consent
+2. WHEN personal data is processed, THE IndiLearn_Platform SHALL encrypt all data in transit and at rest using industry-standard encryption
+3. THE IndiLearn_Platform SHALL provide clear privacy controls allowing users to view, modify, or delete their personal data
+4. THE IndiLearn_Platform SHALL not share personal learning data with third parties without explicit user consent
+5. WHEN AI inference is performed, THE IndiLearn_Platform SHALL process learning content without exposing sensitive personal information
+
+### Requirement 11: AI and Machine Learning Core Requirements
+
+**User Story:** As a learner needing personalized education, I want AI to make intelligent decisions about my learning path, explanations, and skill assessment, so that my education is optimally tailored to my needs.
+
+#### Acceptance Criteria
+
+1. THE IndiLearn_Platform SHALL use AI for skill graph reasoning, learning path optimization, and personalized explanation generation where rule-based systems would be insufficient
+2. WHEN skill confidence is assessed, THE AI_Skill_Graph SHALL use machine learning models to infer understanding from multiple learning signals rather than simple scoring rules
+3. THE Multilingual_AI_Tutor SHALL use large language models for generating contextually appropriate explanations that adapt to learner's current knowledge level
+4. THE Learning_Path_Generator SHALL use AI optimization to balance learning efficiency, retention, and engagement rather than following fixed curricula
+5. WHEN AI decisions impact learning, THE IndiLearn_Platform SHALL provide explainable reasoning for recommendations and allow learner input
+
+### Requirement 12: Ethical and Responsible AI
+
+**User Story:** As a learner from diverse backgrounds, I want AI systems to be fair, transparent, and free from bias, so that all learners receive equitable educational opportunities.
+
+#### Acceptance Criteria
+
+1. THE IndiLearn_Platform SHALL implement bias detection and mitigation strategies across all AI components to ensure fair treatment regardless of gender, region, or socioeconomic background
+2. WHEN AI makes learning recommendations, THE IndiLearn_Platform SHALL provide clear explanations of reasoning and allow learners to understand and challenge decisions
+3. THE IndiLearn_Platform SHALL maintain transparency about AI capabilities and limitations, clearly communicating when human expertise may be needed
+4. WHEN AI systems exhibit unexpected behavior or bias, THE IndiLearn_Platform SHALL provide escalation paths to human review and correction
+5. THE IndiLearn_Platform SHALL regularly audit AI outputs for fairness and accuracy, with particular attention to underrepresented learner populations
 
 ### Requirement 13: Hackathon MVP Scope
 
-**User Story:** As a hackathon participant, I want to demonstrate core platform capabilities within time constraints, so that judges can evaluate the innovation and potential impact.
+**User Story:** As a hackathon participant, I want to demonstrate core IndiLearn functionality within competition constraints, so that judges can evaluate the platform's potential and technical feasibility.
 
 #### Acceptance Criteria
 
-1. THE MVP SHALL include user onboarding with goal selection and language preference
-2. THE MVP SHALL demonstrate basic AI skill graph functionality with at least 20 interconnected skills for one domain
-3. THE MVP SHALL provide multilingual explanations for at least 3 Indian languages plus English
-4. THE MVP SHALL show personalized learning path generation based on skill assessment
-5. THE MVP SHALL include a working progress dashboard with job-readiness visualization
-6. THE MVP SHALL demonstrate offline capability with basic content caching and sync
-7. THE MVP SHALL be deployable on AWS with cost monitoring and optimization
+1. THE IndiLearn_Platform SHALL demonstrate user onboarding, skill assessment, and personalized learning path generation in the MVP
+2. THE IndiLearn_Platform SHALL showcase multilingual AI tutoring with at least Hindi and English language support
+3. THE IndiLearn_Platform SHALL display functional skill graph visualization and job readiness scoring for one domain (Software Development)
+4. THE IndiLearn_Platform SHALL demonstrate offline capability through content caching and local processing simulation
+5. THE IndiLearn_Platform SHALL be deployable on AWS with cost controls suitable for hackathon demonstration period
 
-### Requirement 14: Content Management and Curation
+### Requirement 14: Impact and Success Metrics
 
-**User Story:** As a platform administrator, I want to manage and curate learning content efficiently, so that learners receive high-quality, relevant educational materials.
+**User Story:** As a platform stakeholder, I want to measure learning effectiveness, engagement, and job readiness improvement, so that we can validate IndiLearn's educational impact and optimize the platform.
 
 #### Acceptance Criteria
 
-1. THE IndiLearn_Platform SHALL provide content management interfaces for adding, updating, and organizing learning materials
-2. WHEN new content is added, THE IndiLearn_Platform SHALL automatically tag it with relevant skills and difficulty levels
-3. THE IndiLearn_Platform SHALL support multiple content formats including text, video, interactive exercises, and code examples
-4. WHEN content is updated, THE IndiLearn_Platform SHALL propagate changes to affected learning paths and user recommendations
-5. THE IndiLearn_Platform SHALL track content effectiveness and user engagement to inform curation decisions
-
-### Requirement 15: Assessment and Validation System
-
-**User Story:** As a learner, I want my skills to be assessed accurately and validated against industry standards, so that I can trust my job-readiness evaluation.
-
-#### Acceptance Criteria
-
-1. THE IndiLearn_Platform SHALL provide multiple assessment types including coding challenges, conceptual questions, and project-based evaluations
-2. WHEN assessments are completed, THE AI_Skill_Graph SHALL update confidence weights based on performance patterns and difficulty levels
-3. THE IndiLearn_Platform SHALL validate assessments against real-world job requirements and industry benchmarks
-4. WHEN skill validation occurs, THE IndiLearn_Platform SHALL provide detailed feedback on strengths and improvement areas
-5. THE IndiLearn_Platform SHALL support peer review and expert validation for complex projects and assessments
+1. THE IndiLearn_Platform SHALL track learning time reduction compared to traditional methods, targeting 40% improvement in concept mastery speed
+2. WHEN learners complete explanations, THE IndiLearn_Platform SHALL measure concept clarity through comprehension assessments, targeting 80% first-attempt understanding
+3. THE IndiLearn_Platform SHALL monitor daily active usage and learning session completion rates, targeting 70% weekly retention
+4. THE IndiLearn_Platform SHALL measure job readiness confidence improvement through pre/post assessments, targeting 60% increase in learner confidence scores
+5. WHEN learners complete learning paths, THE IndiLearn_Platform SHALL track skill graph progression and correlation with real-world job placement success
