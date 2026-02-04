@@ -175,7 +175,8 @@ The IndiLearn platform processes multiple types of inputs through sophisticated 
 
 ### Detailed AWS Service Architecture
 
-```mermaid
+```md
+```text
 graph TB
     subgraph "Global Edge Network"
         CF[CloudFront Distribution]
